@@ -1,25 +1,17 @@
 function canCompleteCircuit(gas: number[], cost: number[]): number {
   const n = gas.length;
+  let startingStation = 0; // Ponto de partida inicial
+  let tank = 0; // Gasolina acumulada no tanque
 
-  for (let start = 0; start < n; start++) {
-    let tank = 0;
-    let canComplete = true;
+  for (let i = 0; i < n; i++) {
+    tank += gas[i] - cost[i];
 
-    // Tenta percorrer todas as estações começando de `start`
-    for (let i = 0; i < n; i++) {
-      const currentStation = (start + i) % n;
-      tank += gas[currentStation] - cost[currentStation];
-
-      if (tank < 0) {
-        canComplete = false;
-        break; // Para o loop se não for possível continuar
-      }
-    }
-
-    if (canComplete) {
-      return start; // Retorna a estação inicial se o circuito for possível
+    // Se o tanque ficar negativo, assume que a próxima estação deve ser a nova partida
+    if (tank < 0) {
+      startingStation = i + 1;
+      tank = 0; // Reseta o tanque
     }
   }
 
-  return -1; // Retorna -1 se não for possível completar o circuito
+  return startingStation < n ? startingStation : -1;
 }
