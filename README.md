@@ -32,7 +32,6 @@ Este projeto tem como objetivo resolver questões do [LeetCode](https://leetcode
 
  **Caso 1:**
 
-
  ![](assets/gas_station1.png)
 
  **Caso 2:**
@@ -66,6 +65,9 @@ Este projeto tem como objetivo resolver questões do [LeetCode](https://leetcode
 
  ![](assets/psw_checker2.png)
 
+ **Caso 3:**
+
+ ![](assets/psw_checker3.png)
 
 ## Uso
 
