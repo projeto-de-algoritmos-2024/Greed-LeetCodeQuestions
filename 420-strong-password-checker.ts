@@ -24,7 +24,7 @@ function strongPasswordChecker(password: string): number {
         length++;
         i++;
       }
-      replace += Math.floor(length / 2);
+      replace += Math.floor(length / 3);
       if (length % 3 === 0) oneSeq++;
       else if (length % 3 === 1) twoSeq++;
     } else {
@@ -33,15 +33,15 @@ function strongPasswordChecker(password: string): number {
   }
 
   if (n < 6) {
-    return missingTypes;
+    return Math.max(6 - n, missingTypes);
   } else if (n <= 20) {
-    return replace;
+    return Math.max(replace, missingTypes);
   } else {
     const deleteCount = n - 20;
     replace -= Math.min(deleteCount, oneSeq * 1) / 1;
     replace -= Math.min(Math.max(deleteCount - oneSeq, 0), twoSeq * 2) / 2;
     replace -= Math.max(deleteCount - oneSeq - 2 * twoSeq, 0) / 3;
 
-    return deleteCount + replace;
+    return deleteCount + Math.max(replace, missingTypes);
   }
 }
